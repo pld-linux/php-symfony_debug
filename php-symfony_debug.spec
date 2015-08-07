@@ -14,11 +14,11 @@ Source0:	https://github.com/symfony/Debug/archive/v%{version}/Debug-%{version}.t
 # Source0-md5:	74b1ec1c41ae362d48b39e424fc78232
 URL:		http://symfony.com/doc/2.7/components/debug/index.html
 %{?with_tests:BuildRequires:    %{php_name}-cli}
-BuildRequires:	%{php_name}-devel
+BuildRequires:	%{php_name}-devel >= 4:5.3
 BuildRequires:	rpmbuild(macros) >= 1.666
 %if %{with tests}
 BuildRequires:	%{php_name}-cli
-BuildRequires:	%{php_name}-pcre
+BuildRequires:	%{php_name}-spl
 %endif
 %{?requires_php_extension}
 Provides:	php(symfony_debug) = %{version}
@@ -30,9 +30,10 @@ debugging tools.
 
 %prep
 %setup -qc
-mv Debug-%{version}/Resources/ext/* .
+mv Debug-%{version}/* .
 
 %build
+cd Resources/ext
 phpize
 %configure
 %{__make}
@@ -50,7 +51,7 @@ cat <<'EOF' > run-tests.sh
 export NO_INTERACTION=1 REPORT_EXIT_STATUS=1 MALLOC_CHECK_=2
 %{__make} test \
 	PHP_EXECUTABLE=%{__php} \
-	PHP_TEST_SHARED_SYSTEM_EXTENSIONS="" \
+	PHP_TEST_SHARED_SYSTEM_EXTENSIONS="spl" \
 	RUN_TESTS_SETTINGS="-q $*"
 EOF
 
@@ -61,7 +62,7 @@ test -f failed.log -a ! -s failed.log
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} install \
+%{__make} -C Resources/ext install \
 	EXTENSION_DIR=%{php_extensiondir} \
 	INSTALL_ROOT=$RPM_BUILD_ROOT
 
