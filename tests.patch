@@ -1,0 +1,13 @@
+https://github.com/symfony/symfony/pull/15483
+
+--- php55-symfony_debug-2.7.3/Resources/ext/tests/003.phpt~	2015-07-09 19:07:40.000000000 +0300
++++ php55-symfony_debug-2.7.3/Resources/ext/tests/003.phpt	2015-08-07 08:58:41.086847895 +0300
+@@ -56,7 +56,7 @@
+     [message:protected] => Attempted to call function "notexist" from namespace "Symfony\Component\Debug".
+     [string:Exception:private] => 
+     [code:protected] => 0
+-    [file:protected] => -
++    [file:protected] => %s
+     [line:protected] => %d
+     [trace:Exception:private] => Array
+         (
