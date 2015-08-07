@@ -13,7 +13,7 @@ Group:		Development/Languages/PHP
 Source0:	https://github.com/symfony/Debug/archive/v%{version}/Debug-%{version}.tar.gz
 # Source0-md5:	74b1ec1c41ae362d48b39e424fc78232
 Patch0:		tests.patch
-URL:		http://symfony.com/doc/2.7/components/debug/index.html
+URL:		https://github.com/symfony/Debug/tree/2.7/Resources/ext
 %{?with_tests:BuildRequires:    %{php_name}-cli}
 BuildRequires:	%{php_name}-devel >= 4:5.3
 BuildRequires:	rpmbuild(macros) >= 1.666
