@@ -7,7 +7,7 @@
 Summary:	Symfony Debug Extension
 Name:		%{php_name}-%{modname}
 Version:	2.7.3
-Release:	1
+Release:	2
 License:	MIT
 Group:		Development/Languages/PHP
 Source0:	https://github.com/symfony/Debug/archive/v%{version}/Debug-%{version}.tar.gz
